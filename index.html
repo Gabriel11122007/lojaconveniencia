@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Conveniência Top</title>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+  <!-- Navbar -->
+  <header class="bg-indigo-600 text-white p-4 flex items-center justify-between">
+    <h1 class="text-2xl font-bold">Conveniência</h1>
+    <nav class="hidden lg:flex gap-4">
+      <a href="#carrossel" class="hover:underline">Destaques</a>
+      <a href="#produtos" class="hover:underline">Produtos</a>
+      <a href="#depoimentos" class="hover:underline">Depoimentos</a>
+      <a href="#horario" class="hover:underline">Horário</a>
+      <a href="#localizacao" class="hover:underline">Localização</a>
+      <a href="#contato" class="hover:underline">Contato</a>
+    </nav>
+    <button class="lg:hidden text-2xl">☰</button>
+  </header>
+
+  <!-- Carrossel com DaisyUI -->
+  <section id="carrossel" class="my-4">
+    <div class="carousel w-full">
+      <div class="carousel-item w-full">
+        <img src="https://via.placeholder.com/1200x400?text=Oferta+1" class="w-full object-cover" alt="Oferta 1">
+      </div>
+      <div class="carousel-item w-full">
+        <img src="https://via.placeholder.com/1200x400?text=Oferta+2" class="w-full object-cover" alt="Oferta 2">
+      </div>
+      <div class="carousel-item w-full">
+        <img src="https://via.placeholder.com/1200x400?text=Oferta+3" class="w-full object-cover" alt="Oferta 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- Produtos adicionais com cards variados -->
+  <section id="produtos" class="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <!-- Gerar vários cards com variações -->
+    <div class="bg-white rounded-lg shadow p-4 flex flex-col hover:shadow-lg transition">
+      <div class="relative">
+        <span class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">Promo</span>
+        <img src="https://via.placeholder.com/400x300" alt="Produto A" class="w-full h-48 object-cover rounded mb-4" loading="lazy">
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Produto A</h3>
+      <p class="text-gray-600 mb-4 flex-grow">Descrição rápida e atraente do Produto A.</p>
+      <button class="mt-auto bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded">Adicionar ao carrinho</button>
+    </div>
+    <!-- Replicar com produtos B, C, D etc. -->
+  </section>
+
+  <!-- Depoimentos com cards estilizados -->
+  <section id="depoimentos" class="bg-gray-100 py-8">
+    <div class="container mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-6">O que dizem nossos clientes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <blockquote class="bg-white p-6 rounded shadow italic">"Ótimo atendimento e produto sempre fresco!"<footer class="mt-2 font-semibold">— Cliente A</footer></blockquote>
+        <blockquote class="bg-white p-6 rounded shadow italic">"Entrega rápida e variedade impressionante!"<footer class="mt-2 font-semibold">— Cliente B</footer></blockquote>
+        <blockquote class="bg-white p-6 rounded shadow italic">"Amei as promoções, sempre volto!"<footer class="mt-2 font-semibold">— Cliente C</footer></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Horário de funcionamento -->
+  <section id="horario" class="py-8">
+    <div class="container mx-auto max-w-md text-center bg-white p-6 rounded shadow">
+      <h2 class="text-2xl font-bold mb-4">Horário de Funcionamento</h2>
+      <p>Seg – Sex: 07h00 às 22h00</p>
+      <p>Sáb – Dom: 08h00 às 20h00</p>
+    </div>
+  </section>
+
+  <!-- Localização com mapa embed -->
+  <section id="localizacao" class="py-8">
+    <div class="container mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-4">Onde nos encontrar</h2>
+      <div class="mx-auto max-w-3xl aspect-w-16 aspect-h-9">
+        <iframe
+          src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Taboão+da+Serra+SP+Brasil"
+          allowfullscreen loading="lazy" class="w-full h-full rounded">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulário de contato -->
+  <section id="contato" class="py-8 bg-white">
+    <div class="container mx-auto max-w-lg">
+      <h2 class="text-2xl font-bold mb-4 text-center">Fale conosco</h2>
+      <form class="space-y-4">
+        <input type="text" placeholder="Seu nome" class="w-full border rounded px-3 py-2">
+        <input type="email" placeholder="Seu email" class="w-full border rounded px-3 py-2">
+        <textarea placeholder="Sua mensagem" class="w-full border rounded px-3 py-2"></textarea>
+        <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer final -->
+  <footer class="bg-gray-800 text-white text-center p-4 mt-8">
+    <p>&copy; 2025 Conveniência Top. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
