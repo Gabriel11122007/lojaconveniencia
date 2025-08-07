@@ -344,11 +344,14 @@
     const mensagem = document.getElementById('mensagem').value.trim();
 
     // Monta o texto da mensagem com quebras de linha usando %0a :contentReference[oaicite:0]{index=0}
-    const texto = `Olá! Meu nome é *${nome}*.%0a` +
-                  `${telefone ? `Telefone: *${telefone}*.%0a` : ''}%0a` +
-                  `*Mensagem:*%0a${mensagem}`;
+   const texto = 
+  `Olá! Meu nome é *${nome}*.%0A` +
+  `${telefone ? `Telefone: *${telefone}*.%0A%0A` : ''}` +
+  `*Mensagem:*%0A${mensagem}`;
 
-    const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(texto)}`;
+
+const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(texto)}`;
+
 
     window.open(url, '_blank');
   });
