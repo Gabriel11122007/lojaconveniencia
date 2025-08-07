@@ -30,26 +30,40 @@
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-xl font-bold text-destaque dark:text-yellow-400">Marcelino's Conveniência</h1>
 
-      <nav class="hidden md:flex space-x-6">
-        <a href="#home" class="hover:text-destaque dark:hover:text-yellow-400">Início</a>
-        <a href="#produtos"class="hover:text-destaque dark:hover:text-yellow-400">Produtos</a>
-        <a href="#cardapio" class="hover:text-destaque dark:hover:text-yellow-400">Cardápio</a>
-        <a href="#localizacao" class="hover:text-destaque dark:hover:text-yellow-400">Localização</a>
-        <a href="#contato" class="hover:text-destaque dark:hover:text-yellow-400">Contato</a>
-      </nav>
+      <nav class="hidden md:flex space-x-6 items-center">
+  <a href="#home" class="hover:text-destaque dark:hover:text-yellow-400">Início</a>
+  <a href="#produtos" class="hover:text-destaque dark:hover:text-yellow-400">Produtos</a>
+  <a href="#cardapio" class="hover:text-destaque dark:hover:text-yellow-400">Cardápio</a>
+  <a href="#localizacao" class="hover:text-destaque dark:hover:text-yellow-400">Localização</a>
+  <a href="#contato" class="hover:text-destaque dark:hover:text-yellow-400">Contato</a>
+
+  <!-- Botão dark mode no menu desktop -->
+<button id="toggleDark" class="bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-white p-2 rounded-full shadow">
+  🌙
+</button>
+
+</nav>
+
       <button id="menu-btn" class="md:hidden focus:outline-none" aria-label="Abrir menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 bg-white dark:bg-gray-800">
-      <a href="#home" class="block py-2">Início</a>
-      <a href="#produtos" class="block py-2">Produtos</a>
-      <a href="#cardapio" class="block py-2">Cardápio</a>
-      <a href="#localizacao" class="block py-2">Localização</a>
-      <a href="#contato" class="block py-2">Contato</a>
-    </div>
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 flex flex-col gap-2">
+  <a href="#home" class="block py-2">Início</a>
+  <a href="#produtos" class="block py-2">Produtos</a>
+  <a href="#cardapio" class="block py-2">Cardápio</a>
+  <a href="#localizacao" class="block py-2">Localização</a>
+  <a href="#contato" class="block py-2">Contato</a>
+
+  <!-- Botão dark mode no menu mobile -->
+<button id="toggleDark" class="bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-white p-2 rounded-full shadow">
+  🌙
+</button>
+
+</div>
+
   </header>
 
   <script>
@@ -60,10 +74,7 @@ menuBtn.addEventListener('click', () => {
 });
 
   </script>
-<button id="toggleDark" class="fixed top-4 right-4 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-white p-2 rounded-full shadow-lg z-50 transition duration-300">
-  🌙
-</button>
-<input class="w-full p-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white">
+
 
 
 
@@ -79,21 +90,25 @@ menuBtn.addEventListener('click', () => {
 
 </script>
 <script>
-const toggleDarkBtn = document.getElementById('toggleDark');
+const toggleDark = document.getElementById('toggleDark');
 const html = document.documentElement;
 
-// Aplica tema salvo no localStorage
+// Verifica se o tema está salvo como dark e aplica na inicialização
 if (localStorage.getItem('theme') === 'dark') {
   html.classList.add('dark');
-  toggleDarkBtn.textContent = '☀️';
+  toggleDark.textContent = '☀️'; // Ícone para modo escuro ativado
 } else {
-  toggleDarkBtn.textContent = '🌙';
+  toggleDark.textContent = '🌙'; // Ícone para modo claro ativado
 }
 
-toggleDarkBtn.addEventListener('click', () => {
-  html.classList.toggle('dark');
-  const isDark = html.classList.contains('dark');
-  toggleDarkBtn.textContent = isDark ? '☀️' : '🌙';
+// Evento de clique no botão para alternar tema
+toggleDark.addEventListener('click', () => {
+  const isDark = html.classList.toggle('dark'); // adiciona/remove a classe dark
+
+  // Atualiza o texto do botão conforme o tema atual
+  toggleDark.textContent = isDark ? '☀️' : '🌙';
+
+  // Salva a preferência no localStorage
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
@@ -331,18 +346,19 @@ toggleDarkBtn.addEventListener('click', () => {
 </section>
 
   <!-- LOCALIZAÇÃO -->
-<section id="localizacao" class="py-12 bg-gray-100">
-  <div class="container mx-auto px-4 text-center">
+<section id="localizacao" class="py-12 bg-gray-100 dark:bg-gray-900">
+  <div class="container mx-auto px-4 text-center ">
     <h2 class="text-3xl font-bold mb-4">Onde nos encontrar</h2>
     <p class="mb-4">Rua Nhonho Livramento, 1305 – Centro, Monte Alto – SP</p>
     <div class="w-full max-w-3xl mx-auto aspect-w-16 aspect-h-9 shadow-lg rounded-lg overflow-hidden">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.236238661034!2d-48.494307199999994!3d-21.262114399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b947223313bae1%3A0x973e85a21121114b!2sMarcelino&#39;s%20conveni%C3%AAncia!5e0!3m2!1spt-BR!2sbr!4v1754586880666!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.236238661034!2d-48.494307199999994!3d-21.262114399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b947223313bae1%3A0x973e85a21121114b!2sMarcelino&#39;s%20conveni%C3%AAncia!5e0!3m2!1spt-BR!2sbr!4v1754586880666!5m2!1spt-BR!2sbr" width="100%" height="450"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>
 
 
   <!-- CONTATO -->
+   <br><br><br>
 <div class="bg-white p-8 rounded-xl shadow-lg max-w-md w-full mx-auto">
   <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">Fale Conosco</h2>
   
