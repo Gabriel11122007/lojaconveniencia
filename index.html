@@ -23,17 +23,19 @@
 
 </head>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
   <!-- HEADER -->
-  <header class="bg-white shadow-md sticky top-0 z-50">
+  <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-destaque">Marcelino's Conveniência</h1>
+      <h1 class="text-xl font-bold text-destaque dark:text-yellow-400">Marcelino's Conveniência</h1>
+
       <nav class="hidden md:flex space-x-6">
-        <a href="#home" class="hover:text-destaque">Início</a>
-        <a href="#produtos" class="hover:text-destaque">Produtos</a>
-        <a href="#cardapio" class="hover:text-destaque">Cardápio</a>
-        <a href="#localizacao" class="hover:text-destaque">Localização</a>
-        <a href="#contato" class="hover:text-destaque">Contato</a>
+        <a href="#home" class="hover:text-destaque dark:hover:text-yellow-400">Início</a>
+        <a href="#produtos"class="hover:text-destaque dark:hover:text-yellow-400">Produtos</a>
+        <a href="#cardapio" class="hover:text-destaque dark:hover:text-yellow-400">Cardápio</a>
+        <a href="#localizacao" class="hover:text-destaque dark:hover:text-yellow-400">Localização</a>
+        <a href="#contato" class="hover:text-destaque dark:hover:text-yellow-400">Contato</a>
       </nav>
       <button id="menu-btn" class="md:hidden">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,6 +58,42 @@
       menu.classList.toggle('hidden');
     });
   </script>
+<button id="toggleDark" class="fixed top-4 right-4 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-white p-2 rounded-full shadow-lg z-50 transition duration-300">
+  🌙
+</button>
+<input class="w-full p-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white">
+
+
+
+<script>
+    module.exports = {
+  darkMode: 'class', // ou 'media' se quiser automático
+  content: ["./*.html"], // ajuste conforme seus arquivos
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+</script>
+<script>
+  const toggle = document.getElementById('toggleDark');
+  const html = document.documentElement;
+
+  // Aplica tema salvo no localStorage
+  if (localStorage.getItem('theme') === 'dark') {
+    html.classList.add('dark');
+    toggle.textContent = '☀️';
+  }
+
+  toggle.addEventListener('click', () => {
+    html.classList.toggle('dark');
+    const isDark = html.classList.contains('dark');
+    toggle.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+</script>
+
 
   <!-- HERO / CARROSSEL -->
 <section id="promocoes" class="relative w-full max-w-5xl mx-auto mt-10 overflow-hidden rounded-xl shadow-lg">
@@ -136,20 +174,20 @@
     <div class="container mx-auto">
       <h3 class="text-2xl font-bold mb-6 text-center">Produtos em Destaque</h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white rounded shadow p-4">
+        <div class="bg-white dark:bg-gray-800 rounded shadow p-4">
           <img src="https://source.unsplash.com/300x200/?snack" class="w-full mb-4 rounded" alt="Produto">
-          <h4 class="font-semibold text-lg">Salgadinhos</h4>
-          <p class="text-sm text-gray-600">Várias marcas e sabores.</p>
+          <h4 class="font-semibold text-lg dark:text-white">Salgadinhos</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Várias marcas e sabores.</p>
         </div>
-        <div class="bg-white rounded shadow p-4">
+        <div class="bg-white dark:bg-gray-800 rounded shadow p-4">
           <img src="https://source.unsplash.com/300x200/?soda" class="w-full mb-4 rounded" alt="Produto">
-          <h4 class="font-semibold text-lg">Bebidas Geladas</h4>
-          <p class="text-sm text-gray-600">Refrigerantes, sucos e energéticos.</p>
+          <h4 class="font-semibold text-lg dark:text-white">Bebidas Geladas</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Refrigerantes, sucos e energéticos.</p>
         </div>
-        <div class="bg-white rounded shadow p-4">
+        <div class="bg-white dark:bg-gray-800 rounded shadow p-4">
           <img src="https://source.unsplash.com/300x200/?icecream" class="w-full mb-4 rounded" alt="Produto">
-          <h4 class="font-semibold text-lg">Sorvetes</h4>
-          <p class="text-sm text-gray-600">Delícias geladas para qualquer hora.</p>
+          <h4 class="font-semibold text-lg dark:text-white">Sorvetes</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Delícias geladas para qualquer hora.</p>
         </div>
       </div>
     </div>
@@ -163,64 +201,64 @@
     <!-- Seção: Porções -->
     <h3 class="text-2xl font-semibold mb-4">Porções</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Queijo Parmesão Fracionado</span><span>R$ 32,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Queijo Gouda Fracionado</span><span>R$ 32,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Queijo Provolone Fracionado</span><span>R$ 32,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Queijo Gorgonzola Fracionado</span><span>R$ 32,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Tábuas (queijo, salame, azeitonas)</span><span>R$ 69,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Tábuas (queijo, salame, azeitonas, palmito)</span><span>R$ 89,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Queijo Mussarela Inteira</span><span>R$ 35,80 (Meia: R$ 17,90)</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Presunto Inteiro</span><span>R$ 35,80 (Meia: R$ 17,90)</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Azeitona Inteira</span><span>R$ 35,80 (Meia: R$ 17,90)</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Palmito (vidro)</span><span>R$ 28,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Salame (100 g)</span><span>R$ 24,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Batata Frita</span><span>R$ 33,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Batata Frita de Carinha</span><span>R$ 34,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Batata Frita com Queijo</span><span>R$ 37,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Batata Frita com Queijo e Bacon</span><span>R$ 39,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Calabresa sem Cebola</span><span>R$ 42,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Calabresa com Cebola e Tomate</span><span>R$ 42,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Calabresa com Queijo Derretido</span><span>R$ 46,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Omelete</span><span>R$ 15,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Miolo de Alcatra com Cebola, Tomate e Azeitona</span><span>R$ 79,90</span>
       </div>
     </div>
@@ -228,55 +266,55 @@
     <!-- Seção: Sanduíches & Bebidas -->
     <h3 class="text-2xl font-semibold mb-4">Sanduíches & Bebidas</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Pão na Chapa</span><span>R$ 4,50</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Mini Misto Quente</span><span>R$ 8,50</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Mini Misto com Ovo</span><span>R$ 10,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>X Salada</span><span>R$ 18,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>X Egg</span><span>R$ 21,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>X Bacon Egg</span><span>R$ 24,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Pão de Queijo Pequeno</span><span>R$ 2,00</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Pão de Queijo com Provolone</span><span>R$ 2,50</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Café Expresso</span><span>R$ 3,50</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Café com Leite</span><span>R$ 8,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Cappuccino (Tradicional / Alpino / Talento)</span><span>R$ 8,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Achocolatado (Nescau / Alpino)</span><span>R$ 8,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Pão com Ovo Frito</span><span>R$ 7,50</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Pão com Ovo, Queijo e Bacon</span><span>R$ 10,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Pizza Presunto e Queijo</span><span>R$ 14,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Pizza Calabresa com Queijo</span><span>R$ 14,90</span>
       </div>
-      <div class="bg-gray-50 rounded-lg shadow p-4 flex justify-between">
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow p-4 flex justify-between">
         <span>Pizza Queijo com Tomate e Orégano</span><span>R$ 14,90</span>
       </div>
     </div>
@@ -378,7 +416,7 @@ const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(texto)}`;
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-escuro text-white py-8">
+  <footer class="bg-escuro text-white py-8 dark:bg-black">
     <div class="container mx-auto px-4 text-center">
       <p class="text-lg font-semibold">Marcelino's Conveniência</p>
       <p class="text-sm">Rua Nhonho Livramento, 1305 – Centro, Monte Alto – SP</p>
