@@ -54,11 +54,78 @@
     });
   </script>
 
-  <!-- HERO SECTION -->
-  <section id="home" class="relative bg-destaque text-white text-center py-16">
-    <h2 class="text-4xl font-bold mb-4">Bem-vindo à Marcelino's Conveniência</h2>
-    <p class="text-lg">Aberto todos os dias com o melhor para você!</p>
-  </section>
+  <!-- HERO / CARROSSEL -->
+<section id="promocoes" class="relative w-full max-w-5xl mx-auto mt-10 overflow-hidden rounded-xl shadow-lg">
+  <div
+    id="carousel"
+    class="flex transition-transform duration-700 ease-in-out"
+    onmouseover="pauseCarousel()"
+    onmouseout="resumeCarousel()"
+  >
+    <img src="img/banner.jpeg" alt="Promoção 1" class="w-full flex-shrink-0" />
+    <img src="img/banner.jpeg" alt="Promoção 2" class="w-full flex-shrink-0" />
+    <img src="img/banner.jpeg" alt="Promoção 3" class="w-full flex-shrink-0" />
+  </div>
+
+  <!-- Regiões clicáveis para navegação -->
+  <div onclick="previousSlide()" class="absolute left-0 top-0 w-1/4 h-full cursor-pointer z-10"></div>
+  <div onclick="nextSlide()" class="absolute right-0 top-0 w-1/4 h-full cursor-pointer z-10"></div>
+
+  <!-- Indicadores de slides -->
+  <div id="indicators" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+    <span class="w-3 h-3 bg-white rounded-full opacity-70 hover:opacity-100 transition" onclick="goToSlide(0)"></span>
+    <span class="w-3 h-3 bg-white rounded-full opacity-70 hover:opacity-100 transition" onclick="goToSlide(1)"></span>
+    <span class="w-3 h-3 bg-white rounded-full opacity-70 hover:opacity-100 transition" onclick="goToSlide(2)"></span>
+  </div>
+</section>
+
+
+<script>
+  const carousel = document.getElementById("carousel");
+  const indicators = document.querySelectorAll("#indicators span");
+  const slides = carousel.children.length;
+  let currentSlide = 0;
+  let interval;
+
+  function updateCarousel() {
+    carousel.style.transform = `translateX(${-currentSlide * 100}%)`;
+    indicators.forEach((dot, idx) => {
+      dot.classList.toggle("bg-yellow-400", idx === currentSlide);
+      dot.classList.toggle("bg-white", idx !== currentSlide);
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides;
+    updateCarousel();
+  }
+
+  function previousSlide() {
+    currentSlide = (currentSlide - 1 + slides) % slides;
+    updateCarousel();
+  }
+
+  function goToSlide(idx) {
+    currentSlide = idx;
+    updateCarousel();
+  }
+
+  function startCarousel() {
+    interval = setInterval(nextSlide, 4000);
+  }
+
+  function pauseCarousel() {
+    clearInterval(interval);
+  }
+
+  function resumeCarousel() {
+    startCarousel();
+  }
+
+  updateCarousel();
+  startCarousel();
+</script>
+
 
   <!-- SEÇÕES DINÂMICAS AQUI... -->
    <!-- PRODUTOS -->
