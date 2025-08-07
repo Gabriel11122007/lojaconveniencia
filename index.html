@@ -12,12 +12,15 @@
         extend: {
           colors: {
             destaque: '#f59e0b',
-            escuro: '#1f2937'
+            escuro: '#1f2937',
+            'whatsapp-green': '#25D366',
+            'whatsapp-green-dark': '#128C7E',
           },
         },
       },
     }
   </script>
+
 </head>
 
 <body class="bg-gray-100 text-gray-800">
@@ -297,26 +300,60 @@
 
 
   <!-- CONTATO -->
-  <section id="contato" class="py-12">
-    <div class="container mx-auto">
-      <h3 class="text-2xl font-bold text-center mb-6">Fale Conosco</h3>
-      <form class="max-w-xl mx-auto bg-white p-6 rounded shadow">
-        <div class="mb-4">
-          <label class="block mb-1 font-semibold">Nome</label>
-          <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" required>
-        </div>
-        <div class="mb-4">
-          <label class="block mb-1 font-semibold">E-mail</label>
-          <input type="email" class="w-full border border-gray-300 rounded px-3 py-2" required>
-        </div>
-        <div class="mb-4">
-          <label class="block mb-1 font-semibold">Mensagem</label>
-          <textarea class="w-full border border-gray-300 rounded px-3 py-2" rows="4" required></textarea>
-        </div>
-        <button type="submit" class="bg-destaque text-white px-4 py-2 rounded hover:bg-yellow-600">Enviar</button>
-      </form>
+<div class="bg-white p-8 rounded-xl shadow-lg max-w-md w-full mx-auto">
+  <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">Fale Conosco</h2>
+  
+  <form id="whatsapp-form">
+    <div class="mb-5">
+      <label for="nome" class="block mb-2 text-sm font-medium text-gray-700">Nome:</label>
+      <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required
+             class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900
+                    focus:outline-none focus:border-green-500 transition duration-300">
     </div>
-  </section>
+    
+    <div class="mb-5">
+      <label for="telefone" class="block mb-2 text-sm font-medium text-gray-700">Telefone (opcional):</label>
+      <input type="tel" id="telefone" name="telefone" placeholder="Seu número de telefone"
+             class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900
+                    focus:outline-none focus:border-green-500 transition duration-300">
+    </div>
+    
+    <div class="mb-6">
+      <label for="mensagem" class="block mb-2 text-sm font-medium text-gray-700">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui" required
+                class="w-full p-3 h-32 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 resize-y
+                       focus:outline-none focus:border-green-500 transition duration-300"></textarea>
+    </div>
+    
+    <button type="submit"
+            class="w-full p-4 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 transition-colors duration-300">
+      Enviar via WhatsApp
+    </button>
+  </form>
+</div>
+
+
+<script>
+  document.getElementById('whatsapp-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const numeroWhatsapp = '5516997795333'; // Substitua pelo seu número completo com código do país
+
+    const nome = document.getElementById('nome').value.trim();
+    const telefone = document.getElementById('telefone').value.trim();
+    const mensagem = document.getElementById('mensagem').value.trim();
+
+    // Monta o texto da mensagem com quebras de linha usando %0a :contentReference[oaicite:0]{index=0}
+    const texto = `Olá! Meu nome é *${nome}*.%0a` +
+                  `${telefone ? `Telefone: *${telefone}*.%0a` : ''}%0a` +
+                  `*Mensagem:*%0a${mensagem}`;
+
+    const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(texto)}`;
+
+    window.open(url, '_blank');
+  });
+</script>
+
   
   <!-- CONTATO COM WHATSAPP E REDES SOCIAIS -->
   <section id="contato" class="py-12">
