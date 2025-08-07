@@ -345,8 +345,8 @@
 
     // Monta o texto da mensagem com quebras de linha usando %0a :contentReference[oaicite:0]{index=0}
    const texto = 
-  `Olá! Meu nome é *${nome}*.%0A` +
-  `${telefone ? ` *Telefone: * *${telefone}*.` : ''}.%0A` +
+  `Olá! Meu nome é *${nome}*.` +
+  `${telefone ? ` *Telefone: * *${telefone}*.` : ''}.` +
   `*Mensagem:* ${mensagem}`;
 
 
