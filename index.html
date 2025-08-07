@@ -54,12 +54,80 @@
   </script>
 
   <!-- HERO / CARROSSEL -->
-  <section id="home" class="bg-destaque text-white py-12">
-    <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-4">Bem-vindo à melhor conveniência da cidade!</h2>
-      <p class="text-lg">Promoções todos os dias, atendimento 24h e variedade de produtos.</p>
-    </div>
-  </section>
+<section class="relative w-full max-w-6xl mx-auto mt-10 overflow-hidden rounded-xl shadow-xl">
+  <!-- Slides -->
+  <div
+    id="carousel"
+    class="flex transition-transform duration-700 ease-in-out"
+    onmouseover="pauseCarousel()" onmouseout="resumeCarousel()"
+  >
+    <img src="img/banner.jpeg" alt="Promoção 1" class="w-full flex-shrink-0" />
+    <img src="img/banner.jpeg" alt="Promoção 2" class="w-full flex-shrink-0" />
+    <img src="img/banner.jpeg" alt="Promoção 3" class="w-full flex-shrink-0" />
+  </div>
+
+  <!-- Botões invisíveis para clique nos lados -->
+  <div onclick="previousSlide()" class="absolute left-0 top-0 w-1/4 h-full cursor-pointer z-10"></div>
+  <div onclick="nextSlide()" class="absolute right-0 top-0 w-1/4 h-full cursor-pointer z-10"></div>
+
+  <!-- Indicadores -->
+  <div id="indicators" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+    <span class="w-3 h-3 bg-white rounded-full opacity-70 hover:opacity-100 transition" onclick="goToSlide(0)"></span>
+    <span class="w-3 h-3 bg-white rounded-full opacity-70 hover:opacity-100 transition" onclick="goToSlide(1)"></span>
+    <span class="w-3 h-3 bg-white rounded-full opacity-70 hover:opacity-100 transition" onclick="goToSlide(2)"></span>
+  </div>
+</section>
+
+<script>
+  const carousel = document.getElementById("carousel");
+  const indicators = document.querySelectorAll("#indicators span");
+  const slides = carousel.children.length;
+  let currentSlide = 0;
+  let interval;
+
+  function updateCarousel() {
+    const offset = -currentSlide * 100;
+    carousel.style.transform = `translateX(${offset}%)`;
+
+    indicators.forEach((dot, index) => {
+      dot.classList.toggle("bg-white", index !== currentSlide);
+      dot.classList.toggle("bg-yellow-400", index === currentSlide);
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides;
+    updateCarousel();
+  }
+
+  function previousSlide() {
+    currentSlide = (currentSlide - 1 + slides) % slides;
+    updateCarousel();
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+  }
+
+  function startCarousel() {
+    interval = setInterval(nextSlide, 4000);
+  }
+
+  function pauseCarousel() {
+    clearInterval(interval);
+  }
+
+  function resumeCarousel() {
+    startCarousel();
+  }
+
+  // Iniciar
+  updateCarousel();
+  startCarousel();
+</script>
+
+
 
   <!-- PRODUTOS -->
   <section id="produtos" class="py-12">
