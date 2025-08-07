@@ -347,7 +347,7 @@
    const texto = 
   `Olá! Meu nome é *${nome}*.` +
   `${telefone ? `Telefone: *${telefone}*.` : ''}` +
-  `*Mensagem:*%0A${mensagem}`;
+  `*Mensagem:*${mensagem}`;
 
 
 const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(texto)}`;
