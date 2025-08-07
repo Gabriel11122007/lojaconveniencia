@@ -1,25 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conveniencia Completa</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Conveniência Top</title>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
 
-  <!-- Navbar otimizada -->
-  <header class="bg-indigo-600 text-white p-4 flex items-center justify-between">
-    <h1 class="text-2xl font-bold">Conveniência</h1>
-    <nav class="hidden lg:flex gap-4">
-      <a href="#cardapio" class="hover:underline">Cardápio</a>
-      <a href="#depoimentos" class="hover:underline">Depoimentos</a>
-      <a href="#horario" class="hover:underline">Horário</a>
-      <a href="#localizacao" class="hover:underline">Localização</a>
-      <a href="#contato" class="hover:underline">Contato</a>
-    </nav>
-    <button class="lg:hidden text-2xl">☰</button>
+<body class="bg-gray-100 text-gray-900">
+  <!-- Navbar -->
+  <header class="bg-yellow-500 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Conveniência Total</h1>
+      <nav class="space-x-4">
+        <a href="#inicio" class="hover:underline">Início</a>
+        <a href="#produtos" class="hover:underline">Produtos</a>
+        <a href="#cardapio" class="hover:underline">Cardápio</a>
+        <a href="#localizacao" class="hover:underline">Localização</a>
+        <a href="#contato" class="hover:underline">Contato</a>
+      </nav>
+    </div>
   </header>
+
+  <!-- Hero Banner -->
+  <section id="inicio" class="bg-cover bg-center h-96 flex items-center justify-center text-white" style="background-image: url('https://source.unsplash.com/featured/?convenience-store');">
+    <div class="bg-black bg-opacity-50 p-8 rounded-xl text-center">
+      <h2 class="text-4xl font-bold mb-4">Bem-vindo à sua loja de conveniência!</h2>
+      <p class="text-lg">Tudo o que você precisa, em um só lugar</p>
+    </div>
+  </section>
+
+  <!-- Produtos em Destaque -->
+  <section id="produtos" class="py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-8 text-center">Produtos em Destaque</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white shadow-md rounded-xl p-4">
+          <img src="https://source.unsplash.com/featured/?snacks" alt="Snacks" class="rounded-md mb-4">
+          <h3 class="text-xl font-semibold mb-2">Snacks Variados</h3>
+          <p>Batatas, biscoitos e muito mais!</p>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-4">
+          <img src="https://source.unsplash.com/featured/?bebidas" alt="Bebidas" class="rounded-md mb-4">
+          <h3 class="text-xl font-semibold mb-2">Bebidas Geladas</h3>
+          <p>Refrigerantes, sucos e águas com gelo!</p>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-4">
+          <img src="https://source.unsplash.com/featured/?higiene" alt="Higiene" class="rounded-md mb-4">
+          <h3 class="text-xl font-semibold mb-2">Produtos de Higiene</h3>
+          <p>Sabonetes, papel higiênico, desodorantes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Cardápio Ilustrativo -->
 <section id="cardapio" class="py-8 bg-white">
@@ -153,8 +187,35 @@
   </div>
 </section>
 
+  <!-- Localização -->
+  <section id="localizacao" class="py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4 text-center">Estamos aqui!</h2>
+      <div class="flex justify-center">
+        <iframe class="w-full max-w-3xl h-96 rounded-xl shadow-md"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.899328934039!2d-46.576575385021595!3d-23.507263584707342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5ec7a7b85e99%3A0x9db6c3c5bb1dba1f!2sSupermercado!5e0!3m2!1spt-BR!2sbr!4v1691770552301!5m2!1spt-BR!2sbr"
+          allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
 
-  <!-- Seções restantes (Depoimentos, Horário, Localização...) seguem aqui -->
+  <!-- Contato -->
+  <section id="contato" class="py-12 bg-gray-200">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4 text-center">Fale Conosco</h2>
+      <form class="max-w-xl mx-auto bg-white shadow-md rounded-xl p-6 space-y-4">
+        <input type="text" placeholder="Seu nome" class="w-full border border-gray-300 rounded-md p-2">
+        <input type="email" placeholder="Seu e-mail" class="w-full border border-gray-300 rounded-md p-2">
+        <textarea placeholder="Sua mensagem" class="w-full border border-gray-300 rounded-md p-2 h-32"></textarea>
+        <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Enviar</button>
+      </form>
+    </div>
+  </section>
 
+  <!-- Footer -->
+  <footer class="bg-yellow-500 text-center text-white py-4">
+    <p>&copy; 2025 Conveniência Total. Todos os direitos reservados.</p>
+  </footer>
 </body>
+
 </html>
