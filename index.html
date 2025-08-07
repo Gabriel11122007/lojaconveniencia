@@ -54,29 +54,30 @@
   </script>
 
   <!-- HERO / CARROSSEL -->
-<section class="relative w-full max-w-6xl mx-auto mt-10 overflow-hidden rounded-xl shadow-xl">
-  <!-- Slides -->
+<section id="promocoes" class="relative w-full max-w-5xl mx-auto mt-10 overflow-hidden rounded-xl shadow-lg">
   <div
     id="carousel"
     class="flex transition-transform duration-700 ease-in-out"
-    onmouseover="pauseCarousel()" onmouseout="resumeCarousel()"
+    onmouseover="pauseCarousel()"
+    onmouseout="resumeCarousel()"
   >
     <img src="img/banner.jpeg" alt="Promoção 1" class="w-full flex-shrink-0" />
     <img src="img/banner.jpeg" alt="Promoção 2" class="w-full flex-shrink-0" />
     <img src="img/banner.jpeg" alt="Promoção 3" class="w-full flex-shrink-0" />
   </div>
 
-  <!-- Botões invisíveis para clique nos lados -->
+  <!-- Regiões clicáveis para navegação -->
   <div onclick="previousSlide()" class="absolute left-0 top-0 w-1/4 h-full cursor-pointer z-10"></div>
   <div onclick="nextSlide()" class="absolute right-0 top-0 w-1/4 h-full cursor-pointer z-10"></div>
 
-  <!-- Indicadores -->
+  <!-- Indicadores de slides -->
   <div id="indicators" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
     <span class="w-3 h-3 bg-white rounded-full opacity-70 hover:opacity-100 transition" onclick="goToSlide(0)"></span>
     <span class="w-3 h-3 bg-white rounded-full opacity-70 hover:opacity-100 transition" onclick="goToSlide(1)"></span>
     <span class="w-3 h-3 bg-white rounded-full opacity-70 hover:opacity-100 transition" onclick="goToSlide(2)"></span>
   </div>
 </section>
+
 
 <script>
   const carousel = document.getElementById("carousel");
@@ -86,12 +87,10 @@
   let interval;
 
   function updateCarousel() {
-    const offset = -currentSlide * 100;
-    carousel.style.transform = `translateX(${offset}%)`;
-
-    indicators.forEach((dot, index) => {
-      dot.classList.toggle("bg-white", index !== currentSlide);
-      dot.classList.toggle("bg-yellow-400", index === currentSlide);
+    carousel.style.transform = `translateX(${-currentSlide * 100}%)`;
+    indicators.forEach((dot, idx) => {
+      dot.classList.toggle("bg-yellow-400", idx === currentSlide);
+      dot.classList.toggle("bg-white", idx !== currentSlide);
     });
   }
 
@@ -105,8 +104,8 @@
     updateCarousel();
   }
 
-  function goToSlide(index) {
-    currentSlide = index;
+  function goToSlide(idx) {
+    currentSlide = idx;
     updateCarousel();
   }
 
@@ -122,10 +121,10 @@
     startCarousel();
   }
 
-  // Iniciar
   updateCarousel();
   startCarousel();
 </script>
+
 
 
 
@@ -286,14 +285,21 @@
 </section>
 
   <!-- LOCALIZAÇÃO -->
-  <section id="localizacao" class="py-12 bg-gray-50">
-    <div class="container mx-auto text-center">
-      <h3 class="text-2xl font-bold mb-4">Onde Estamos</h3>
-      <div class="w-full h-64">
-        <iframe class="w-full h-full rounded shadow" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.7072759584344!2d-46.63448468454003!3d-23.5807166687519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDM0JzUwLjYiUyA0NsKwMzgnMDYuMSJX!5e0!3m2!1spt-BR!2sbr!4v1616342458987!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
-      </div>
+<section id="localizacao" class="py-12 bg-gray-100">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-4">Onde nos encontrar</h2>
+    <p class="mb-4">Rua Nhonho Livramento, 1305 – Centro, Monte Alto – SP</p>
+    <div class="w-full max-w-3xl mx-auto aspect-w-16 aspect-h-9 shadow-lg rounded-lg overflow-hidden">
+      <iframe
+        src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Rua+Nhonho+Livramento+1305+Monte+Alto+SP"
+        allowfullscreen
+        loading="lazy"
+        class="w-full h-full"
+      ></iframe>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- CONTATO -->
   <section id="contato" class="py-12">
