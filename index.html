@@ -1,55 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conveniencia Completa</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conveniência Completa</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            destaque: '#f59e0b',
+          },
+        },
+      },
+    }
+  </script>
 </head>
-
-<body class="bg-gray-100 text-gray-900">
-  <!-- Navbar -->
-  <header class="bg-yellow-500 shadow-md sticky top-0 z-50">
+<body class="bg-gray-100 text-gray-800">
+  <!-- NAVBAR -->
+  <header class="bg-white shadow-md">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Conveniência Total</h1>
-      <nav class="space-x-4">
-        <a href="#inicio" class="hover:underline">Início</a>
-        <a href="#produtos" class="hover:underline">Produtos</a>
-        <a href="#cardapio" class="hover:underline">Cardápio</a>
-        <a href="#localizacao" class="hover:underline">Localização</a>
-        <a href="#contato" class="hover:underline">Contato</a>
+      <h1 class="text-xl font-bold text-destaque">Conveniência Top</h1>
+      <button id="menu-btn" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <nav id="menu" class="hidden md:flex space-x-6">
+        <a href="#home" class="hover:text-destaque">Início</a>
+        <a href="#produtos" class="hover:text-destaque">Produtos</a>
+        <a href="#cardapio" class="hover:text-destaque">Cardápio</a>
+        <a href="#localizacao" class="hover:text-destaque">Localização</a>
+        <a href="#contato" class="hover:text-destaque">Contato</a>
       </nav>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+      <a href="#home" class="block py-2">Início</a>
+      <a href="#produtos" class="block py-2">Produtos</a>
+      <a href="#cardapio" class="block py-2">Cardápio</a>
+      <a href="#localizacao" class="block py-2">Localização</a>
+      <a href="#contato" class="block py-2">Contato</a>
     </div>
   </header>
 
-  <!-- Hero Banner -->
-  <section id="inicio" class="bg-cover bg-center h-96 flex items-center justify-center text-white" style="background-image: url('https://source.unsplash.com/featured/?convenience-store');">
-    <div class="bg-black bg-opacity-50 p-8 rounded-xl text-center">
-      <h2 class="text-4xl font-bold mb-4">Bem-vindo à sua loja de conveniência!</h2>
-      <p class="text-lg">Tudo o que você precisa, em um só lugar</p>
+  <!-- JS MENU TOGGLE -->
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+
+  <!-- HERO / CARROSSEL -->
+  <section id="home" class="bg-destaque text-white py-12">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Bem-vindo à melhor conveniência da cidade!</h2>
+      <p class="text-lg">Promoções todos os dias, atendimento 24h e variedade de produtos.</p>
     </div>
   </section>
 
-  <!-- Produtos em Destaque -->
+  <!-- PRODUTOS -->
   <section id="produtos" class="py-12">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-8 text-center">Produtos em Destaque</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white shadow-md rounded-xl p-4">
-          <img src="https://source.unsplash.com/featured/?snacks" alt="Snacks" class="rounded-md mb-4">
-          <h3 class="text-xl font-semibold mb-2">Snacks Variados</h3>
-          <p>Batatas, biscoitos e muito mais!</p>
+    <div class="container mx-auto">
+      <h3 class="text-2xl font-bold mb-6 text-center">Produtos em Destaque</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded shadow p-4">
+          <img src="https://source.unsplash.com/300x200/?snack" class="w-full mb-4 rounded" alt="Produto">
+          <h4 class="font-semibold text-lg">Salgadinhos</h4>
+          <p class="text-sm text-gray-600">Várias marcas e sabores.</p>
         </div>
-        <div class="bg-white shadow-md rounded-xl p-4">
-          <img src="https://source.unsplash.com/featured/?bebidas" alt="Bebidas" class="rounded-md mb-4">
-          <h3 class="text-xl font-semibold mb-2">Bebidas Geladas</h3>
-          <p>Refrigerantes, sucos e águas com gelo!</p>
+        <div class="bg-white rounded shadow p-4">
+          <img src="https://source.unsplash.com/300x200/?soda" class="w-full mb-4 rounded" alt="Produto">
+          <h4 class="font-semibold text-lg">Bebidas Geladas</h4>
+          <p class="text-sm text-gray-600">Refrigerantes, sucos e energéticos.</p>
         </div>
-        <div class="bg-white shadow-md rounded-xl p-4">
-          <img src="https://source.unsplash.com/featured/?higiene" alt="Higiene" class="rounded-md mb-4">
-          <h3 class="text-xl font-semibold mb-2">Produtos de Higiene</h3>
-          <p>Sabonetes, papel higiênico, desodorantes.</p>
+        <div class="bg-white rounded shadow p-4">
+          <img src="https://source.unsplash.com/300x200/?icecream" class="w-full mb-4 rounded" alt="Produto">
+          <h4 class="font-semibold text-lg">Sorvetes</h4>
+          <p class="text-sm text-gray-600">Delícias geladas para qualquer hora.</p>
         </div>
       </div>
     </div>
@@ -187,35 +217,43 @@
   </div>
 </section>
 
-  <!-- Localização -->
-  <section id="localizacao" class="py-12">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-4 text-center">Estamos aqui!</h2>
-      <div class="flex justify-center">
-        <iframe class="w-full max-w-3xl h-96 rounded-xl shadow-md"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.899328934039!2d-46.576575385021595!3d-23.507263584707342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5ec7a7b85e99%3A0x9db6c3c5bb1dba1f!2sSupermercado!5e0!3m2!1spt-BR!2sbr!4v1691770552301!5m2!1spt-BR!2sbr"
-          allowfullscreen="" loading="lazy"></iframe>
+  <!-- LOCALIZAÇÃO -->
+  <section id="localizacao" class="py-12 bg-gray-50">
+    <div class="container mx-auto text-center">
+      <h3 class="text-2xl font-bold mb-4">Onde Estamos</h3>
+      <div class="w-full h-64">
+        <iframe class="w-full h-full rounded shadow" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.7072759584344!2d-46.63448468454003!3d-23.5807166687519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDM0JzUwLjYiUyA0NsKwMzgnMDYuMSJX!5e0!3m2!1spt-BR!2sbr!4v1616342458987!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
   </section>
 
-  <!-- Contato -->
-  <section id="contato" class="py-12 bg-gray-200">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-4 text-center">Fale Conosco</h2>
-      <form class="max-w-xl mx-auto bg-white shadow-md rounded-xl p-6 space-y-4">
-        <input type="text" placeholder="Seu nome" class="w-full border border-gray-300 rounded-md p-2">
-        <input type="email" placeholder="Seu e-mail" class="w-full border border-gray-300 rounded-md p-2">
-        <textarea placeholder="Sua mensagem" class="w-full border border-gray-300 rounded-md p-2 h-32"></textarea>
-        <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Enviar</button>
+  <!-- CONTATO -->
+  <section id="contato" class="py-12">
+    <div class="container mx-auto">
+      <h3 class="text-2xl font-bold text-center mb-6">Fale Conosco</h3>
+      <form class="max-w-xl mx-auto bg-white p-6 rounded shadow">
+        <div class="mb-4">
+          <label class="block mb-1 font-semibold">Nome</label>
+          <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+          <label class="block mb-1 font-semibold">E-mail</label>
+          <input type="email" class="w-full border border-gray-300 rounded px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+          <label class="block mb-1 font-semibold">Mensagem</label>
+          <textarea class="w-full border border-gray-300 rounded px-3 py-2" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="bg-destaque text-white px-4 py-2 rounded hover:bg-yellow-600">Enviar</button>
       </form>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-yellow-500 text-center text-white py-4">
-    <p>&copy; 2025 Conveniência Total. Todos os direitos reservados.</p>
+  <!-- FOOTER -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2025 Conveniência Top. Todos os direitos reservados.</p>
+    </div>
   </footer>
 </body>
-
 </html>
