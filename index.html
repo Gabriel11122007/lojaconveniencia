@@ -41,36 +41,37 @@
         </button>
       </nav>
 
-      <button id="menu-btn" class="md:hidden focus:outline-none" aria-label="Abrir menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+<!-- Botão hamburguer -->
+<button id="mobile-menu-button" class="md:hidden p-2 rounded focus:outline-none focus:ring">
+  <!-- Ícone hamburguer -->
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+</button>
     </div>
+<div>
+  <nav id="mobile-menu"
+    class="max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out md:hidden absolute top-full left-0 w-full
+           bg-white dark:bg-gray-800 shadow-lg z-50">
+    <ul class="flex flex-col space-y-2 p-4">
+      <a href="#home" class="text-gray-800 dark:text-gray-100 hover:text-destaque dark:hover:text-yellow-400">Início</a>
+      <a href="#produtos" class="text-gray-800 dark:text-gray-100 hover:text-destaque dark:hover:text-yellow-400">Produtos</a>
+      <a href="#cardapio" class="text-gray-800 dark:text-gray-100 hover:text-destaque dark:hover:text-yellow-400">Cardápio</a>
+      <a href="#localizacao" class="text-gray-800 dark:text-gray-100 hover:text-destaque dark:hover:text-yellow-400">Localização</a>
+      <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-destaque dark:hover:text-yellow-400">Contato</a>
 
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 flex flex-col gap-2">
-      <a href="#home" class="block py-2">Início</a>
-      <a href="#produtos" class="block py-2">Produtos</a>
-      <a href="#cardapio" class="block py-2">Cardápio</a>
-      <a href="#localizacao" class="block py-2">Localização</a>
-      <a href="#contato" class="block py-2">Contato</a>
-
-      <!-- Botão dark mode no menu mobile -->
-      <button id="toggleDarkBtnMobile" class="bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-white p-2 rounded-full shadow" aria-label="Alternar tema">
+      <button id="toggleDarkBtnMobile" 
+              class="mt-4 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white shadow mt-4 w-10 h-10 flex items-center justify-center rounded-full" 
+              aria-label="Alternar tema">
         🌙
       </button>
-    </div>
+    </ul>
+  </nav>
+</div>
+
   </header>
 
- 
-  <script>
-const menuBtn = document.getElementById('menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-menuBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-});
-
-  </script>
 
 
 
@@ -352,6 +353,10 @@ menuBtn.addEventListener('click', () => {
 </div>
 
 
+
+
+
+
 <script>
   document.getElementById('whatsapp-form').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -411,16 +416,27 @@ const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(texto)}`;
     </div>
   </footer>
 
+  <script>
+  const btn = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+
+  btn.addEventListener('click', () => {
+    if (menu.classList.contains('max-h-0')) {
+      menu.classList.remove('max-h-0', 'opacity-0');
+      menu.classList.add('max-h-96', 'opacity-100');
+    } else {
+      menu.classList.remove('max-h-96', 'opacity-100');
+      menu.classList.add('max-h-0', 'opacity-0');
+    }
+  });
+</script>
+
+
+
 
   <!-- SCRIPTS (no fim da página) -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Toggle mobile menu
-      const menuBtn = document.getElementById('menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-      }
 
       // Theme buttons
       const desktopBtn = document.getElementById('toggleDarkBtn');
