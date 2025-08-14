@@ -122,7 +122,7 @@ function adicionarProdutoIndexed(nome, validade, quantidade, tipoMovimentacao) {
   // Verifica o tipo de movimentação: entrada ou baixa
   if (tipoMovimentacao === 'entrada') {
     store.add({ nome, validade, quantidade });
-    historico.unshift(Entrada: ${quantidade} ${nome} (validade ${validade}));
+    historico.unshift(`Entrada: ${quantidade} ${nome} (validade ${validade})`);
   } else if (tipoMovimentacao === 'baixa') {
     // Baixar quantidade existente
     const requestAll = store.getAll();
@@ -133,10 +133,10 @@ function adicionarProdutoIndexed(nome, validade, quantidade, tipoMovimentacao) {
         produtoExistente.quantidade -= quantidade;
         if (produtoExistente.quantidade <= 0) {
           store.delete(produtoExistente.id);
-          historico.unshift(Baixa: ${quantidade} ${nome} (validade ${validade}));
+          historico.unshift(`Baixa: ${quantidade} ${nome} (validade ${validade})`);
         } else {
           store.put(produtoExistente);
-          historico.unshift(Baixa: ${quantidade} ${nome} (validade ${validade}));
+          historico.unshift(`Baixa: ${quantidade} ${nome} (validade ${validade})`);
         }
       }
       atualizarHistorico();
@@ -172,7 +172,7 @@ function editarLoteIndexed(id) {
     l.validade = novaVal;
     store.put(l);
     tx.oncomplete = () => carregarProdutos();
-    historico.unshift(Editado lote ${l.nome} (${l.validade}));
+    historico.unshift(`Editado lote ${l.nome} (${l.validade})`);
     atualizarHistorico();
   }
 }
@@ -211,7 +211,7 @@ function carregarProdutos() {
 
     // Renderização dos produtos na tabela
     if (rows.length === 0) {
-      tbody.innerHTML = <tr><td colspan="5" class="text-center p-2">Nenhum produto cadastrado</td></tr>;
+      tbody.innerHTML = `<tr><td colspan="5" class="text-center p-2">Nenhum produto cadastrado</td></tr>`;
       atualizarGrafico();
       atualizarGraficoPizza();
       return;
@@ -325,7 +325,7 @@ function atualizarGraficoPizza() {
           tooltip: {
             callbacks: {
               label: function (tooltipItem) {
-                return ${tooltipItem.label}: ${tooltipItem.raw} produtos;
+                return `${tooltipItem.label}: ${tooltipItem.raw} produtos`;
               }
             }
           }
@@ -340,20 +340,27 @@ document.getElementById('exportarCSV').addEventListener('click', () => {
   const tx = db.transaction('produtos', 'readonly');
   const store = tx.objectStore('produtos');
   const requestAll = store.getAll();
+
   requestAll.onsuccess = function (e) {
     const data = e.target.result;
     const csvRows = [];
-    const headers = ['Nome', 'Validade', 'Quantidade'];
-    csvRows.push(headers.join(','));
 
+    // Cabeçalhos
+    const headers = ['Nome', 'Validade', 'Quantidade'];
+    csvRows.push(headers.join(';')); // ; para compatibilidade com Excel PT-BR
+
+    // Linhas
     data.forEach(row => {
-      const dias = diasParaVencer(row.validade);
-      const rowData = ${row.nome},${row.validade},${row.quantidade};
-      csvRows.push(rowData);
+      const nome = `"${row.nome}"`; // protege contra vírgulas no texto
+      const validade = `"${row.validade}"`;
+      const quantidade = row.quantidade;
+
+      csvRows.push([nome, validade, quantidade].join(';'));
     });
 
+    // Cria o arquivo CSV
     const csvContent = csvRows.join('\n');
-    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = 'estoque.csv';
@@ -364,7 +371,7 @@ document.getElementById('exportarCSV').addEventListener('click', () => {
 // Histórico
 function atualizarHistorico() {
   const ul = document.getElementById('historico');
-  ul.innerHTML = historico.map(h => <li>${h}</li>).join('');
+  ul.innerHTML = historico.map(h => `<li>${h}</li>`).join('');
 }
 
 // Eventos
